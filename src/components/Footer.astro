@@ -8,15 +8,15 @@
             <div class="social-links">
                 <a href="mailto:your.email@example.com" class="social-link">
                     <span class="link-text">Email</span>
-                    <span class="icon">✉️</span>
+                    <i class="fa-regular fa-envelope icon"></i>
                 </a>
                 <a href="https://github.com/Las-Vejas" target="_blank" rel="noopener noreferrer" class="social-link">
                     <span class="link-text">GitHub</span>
-                    <img src="" class="icon" >kitty</img>
+                    <i class="fa-brands fa-github icon"></i>
                 </a>
                 <a href="https://instagram.com/vejas.sereicikas" target="_blank" rel="noopener noreferrer" class="social-link">
                     <span class="link-text">Instagram</span>
-                    <img src="" class="icon" ></img>
+                    <i class="fa-brands fa-instagram icon"></i>
                 </a>
             </div>
         </div>
@@ -78,6 +78,12 @@
 
     .icon {
         font-size: 1.2rem;
+        color: white;
+        transition: color 0.2s ease;
+    }
+
+    .social-link:hover .icon {
+        color: var(--text);
     }
 
     .copyright {
