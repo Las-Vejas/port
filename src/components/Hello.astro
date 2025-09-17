@@ -1,0 +1,21 @@
+---
+const links = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+];
+---
+
+<aside style="width: 200px; background: #f4f4f4; padding: 1rem; min-height: 100vh;">
+    <nav>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {links.map(link => (
+                <li style="margin-bottom: 1rem;">
+                    <a href={link.href} style="text-decoration: none; color: #333;">
+                        {link.name}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+</aside>
