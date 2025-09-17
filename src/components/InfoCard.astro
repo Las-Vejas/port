@@ -1,0 +1,45 @@
+---
+interface Props {
+    title: string;
+    items: string[];
+    delay?: number;
+}
+
+const { title, items, delay = 1 } = Astro.props;
+---
+
+<div class={`info-card animate-fade-in delay-${delay}`}>
+    <h3>{title}</h3>
+    <ul>
+        {items.map((item) => <li>{item}</li>)}
+    </ul>
+</div>
+
+<style>
+    .info-card {
+        padding: 2rem;
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        transition: transform 0.2s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+
+    .info-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-card li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+</style>

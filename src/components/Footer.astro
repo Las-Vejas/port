@@ -1,0 +1,111 @@
+---
+---
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h2>Contact Me</h2>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" class="social-link">
+                    <span class="link-text">Email</span>
+                    <span class="icon">✉️</span>
+                </a>
+                <a href="https://github.com/Las-Vejas" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="link-text">GitHub</span>
+                    <img src="" class="icon" >kitty</img>
+                </a>
+                <a href="https://instagram.com/vejas.sereicikas" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="link-text">Instagram</span>
+                    <img src="" class="icon" ></img>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <p class="copyright">
+                Built with <span class="heart">♥</span> using <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+                <br>
+                © {new Date().getFullYear()} Vejas. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        margin: 8rem 0 4rem;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to right, var(--text), var(--text-secondary));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        transition: transform 0.2s ease, color 0.2s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        background-color: var(--card-bg);
+    }
+
+    .social-link:hover {
+        transform: translateY(-2px);
+        color: var(--text);
+    }
+
+    .icon {
+        font-size: 1.2rem;
+    }
+
+    .copyright {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .copyright a {
+        color: var(--text);
+        text-decoration: none;
+    }
+
+    .copyright a:hover {
+        text-decoration: underline;
+    }
+
+    .heart {
+        color: #e25555;
+    }
+
+    @media (max-width: 768px) {
+        footer {
+            margin: 4rem 0 2rem;
+        }
+
+        .social-links {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+</style>

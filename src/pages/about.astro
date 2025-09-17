@@ -1,4 +1,11 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Footer from '../components/Footer.astro';
+import InfoCard from '../components/InfoCard.astro';
+
 const pageTitle = 'About Me';
 
 const identity = {
@@ -11,38 +18,119 @@ const identity = {
 const skills = ["HTML", "CSS", "School"];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} >
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-  <!-- Links -->
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+<Layout title={pageTitle}>
+    <Navigation />
+    
+    <Hero 
+        title="About Me"
+        description={`Student and keyboard enthusiast based in ${identity.country}, passionate about technology and creating elegant solutions.`}
+    />
 
-  <!-- Content -->
-    <h1>About Me</h1>
-    <h2>... and my new Astro site!</h2>
+    <section class="content">
+        <SectionHeader 
+            title="Skills & Interests"
+            subtitle="What I bring to the table"
+        />
 
-    <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-    <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+        <div class="info-grid">
+            <InfoCard
+                title="Skills"
+                items={skills}
+                delay={1}
+            />
+            <InfoCard
+                title="Hobbies"
+                items={identity.hobbies}
+                delay={2}
+            />
+        </div>
+    </section>
 
-    <h2>A few things about me:</h2>
-    <ul>
-     <li>My name is {identity.firstName}.</li>
-     <li>I live in {identity.country} and I am a {identity.occupation}.</li>
-     {identity.hobbies.length >= 2 &&
-    <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+    <Footer />
+</Layout>
+
+<style>
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
     }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
-</body>
-</html>
+
+    @media (max-width: 768px) {
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .info-card {
+        padding: 2rem;
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        transition: transform 0.2s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+
+    .info-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-card li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    footer {
+        margin: 8rem 0 4rem;
+    }
+
+    .connect h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .social-links a {
+        color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            margin: 4rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .bio {
+            font-size: 1.125rem;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

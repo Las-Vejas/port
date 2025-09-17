@@ -1,0 +1,219 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    frontmatter: {
+        title: string;
+        pubDate: string;
+        description: string;
+        author: string;
+        image?: {
+            url: string;
+            alt: string;
+        };
+        tags?: string[];
+    };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <Navigation />
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-meta">
+                <time datetime={frontmatter.pubDate}>
+                    {new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}
+                </time>
+                {frontmatter.tags && (
+                    <div class="tags">
+                        {frontmatter.tags.map(tag => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )}
+            </div>
+            <h1>{frontmatter.title}</h1>
+            <p class="description">{frontmatter.description}</p>
+            {frontmatter.image && (
+                <img 
+                    src={frontmatter.image.url} 
+                    alt={frontmatter.image.alt}
+                    class="featured-image"
+                />
+            )}
+        </header>
+
+        <div class="content">
+            <slot />
+        </div>
+    </article>
+
+    <Footer />
+</Layout>
+
+<style>
+    .post {
+        max-width: 65ch;
+        margin: 4rem auto;
+        padding: 0 1rem;
+    }
+
+    .post-header {
+        margin-bottom: 4rem;
+    }
+
+    .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background-color: var(--card-bg);
+        padding: 0.2rem 0.8rem;
+        border-radius: 1rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 600;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, var(--text), var(--text-secondary));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .description {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    .featured-image {
+        width: 100%;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Markdown content styling */
+    .content :global(h2) {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin: 2.5rem 0 1rem;
+        color: var(--text);
+    }
+
+    .content :global(h3) {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 2rem 0 0.8rem;
+        color: var(--text);
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        margin: 1rem 0 2rem 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    .content :global(blockquote) {
+        border-left: 4px solid var(--border);
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        color: var(--text-secondary);
+    }
+
+    .content :global(code) {
+        background-color: var(--card-bg);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.3rem;
+        font-size: 0.9em;
+    }
+
+    .content :global(pre) {
+        background-color: var(--card-bg);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+
+    .content :global(pre code) {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .content :global(a) {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: var(--text-secondary);
+        text-underline-offset: 2px;
+        transition: all 0.2s ease;
+    }
+
+    .content :global(a:hover) {
+        text-decoration-color: var(--text);
+    }
+
+    .content :global(img) {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 2rem 0;
+    }
+
+    .content :global(hr) {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 2rem 0;
+    }
+
+    .content :global(strong) {
+        color: var(--text);
+    }
+
+    .content :global(em) {
+        color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+        .post {
+            margin: 2rem auto;
+        }
+
+        .post-header {
+            margin-bottom: 2rem;
+        }
+    }
+</style>

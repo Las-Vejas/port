@@ -1,0 +1,45 @@
+---
+---
+
+<nav>
+    <a href="/" class="logo">V</a>
+    <div class="nav-links">
+        <a href="/about">About</a>
+        <a href="/blog">Writing</a>
+        <a href="https://github.com/Las-Vejas" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 0;
+        margin-bottom: 4rem;
+    }
+
+    .logo {
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--text);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+    }
+</style>

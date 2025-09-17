@@ -1,26 +1,48 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PostCard from '../components/PostCard.astro';
+import Footer from '../components/Footer.astro';
+
 const pageTitle = 'Blog';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} >
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <!-- Links -->
-	<a href="/">Home</a>
-	<a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+<Layout title={pageTitle}>
+    <Navigation />
+    
+    <Hero 
+        title="Writing & Thoughts" 
+        description="Sharing my journey through tech, keyboards, and development."
+    />
 
-    <!-- Contents -->
-    <h1>My Astro Learning Blog</h1>
-    <p>This is where I will post about my journey learning Astro.</p>
-    <ul>
-      <li><a href="/posts/1/">1st Post</a></li>
-    </ul>
-  </body>
-</html>
+    <section class="posts">
+        <SectionHeader 
+            title="Latest Posts" 
+            subtitle="My recent writings and musings"
+        />
+
+        <div class="posts-grid">
+            <PostCard 
+                title="First Blog Post"
+                description="Starting my journey with Astro and web development"
+                date="September 2025"
+                url="/posts/1/"
+            />
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    .posts-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        background-color: var(--border);
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+</style>

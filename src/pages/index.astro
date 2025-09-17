@@ -1,16 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Vejas">
-	<nav>
-		<a href="/" class="logo">V</a>
-		<div class="nav-links">
-			<a href="/about">About</a>
-			<a href="/blog">Writing</a>
-			<a href="https://github.com/Las-Vejas" target="_blank" rel="noopener noreferrer">GitHub</a>
-		</div>
-	</nav>
+	<Navigation />
 
 	<header class="hero">
 		<div class="intro">
@@ -51,44 +46,10 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
-	<footer>
-		<div class="connect">
-			<h2>Let's Connect</h2>
-			<div class="social-links">
-				<a href="mailto:your.email@example.com">Email</a>
-				<a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">Twitter</a>
-				<a href="https://github.com/Las-Vejas" target="_blank" rel="noopener noreferrer">GitHub</a>
-			</div>
-		</div>
-	</footer>
+	<Footer />
 </Layout>
 
 <style>
-	nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 2rem 0;
-		margin-bottom: 4rem;
-	}
-
-	.logo {
-		font-weight: 600;
-		font-size: 1.5rem;
-		color: var(--text);
-	}
-
-	.nav-links {
-		display: flex;
-		gap: 2rem;
-	}
-
-	.nav-links a {
-		color: var(--text-secondary);
-		font-size: 1rem;
-		font-weight: 500;
-	}
-
 	.hero {
 		margin: 8rem 0;
 	}
