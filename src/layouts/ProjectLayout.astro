@@ -1,0 +1,189 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/project.css';
+
+interface Props {
+    frontmatter: {
+        title: string;
+        description: string;
+        date: string;
+        tags?: string[];
+    };
+}
+
+const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long'
+});
+---
+
+<Layout title={frontmatter.title}>
+    <Navigation />
+    
+    <article class="project">
+        <header class="project-header">
+            <div class="project-meta">
+                <time datetime={frontmatter.date}>{formattedDate}</time>
+                {frontmatter.tags && (
+                    <div class="tags">
+                        {frontmatter.tags.map(tag => (
+                            <span class="tag">#{tag}</span>
+                        ))}
+                    </div>
+                )}
+            </div>
+            <h1>{frontmatter.title}</h1>
+            <p class="description">{frontmatter.description}</p>
+        </header>
+
+        <div class="content">
+            <slot />
+        </div>
+    </article>
+
+    <Footer />
+</Layout>
+
+<style>
+    .project {
+        max-width: 65ch;
+        margin: 4rem auto;
+        padding: 0 1rem;
+    }
+
+    .project-header {
+        margin-bottom: 4rem;
+    }
+
+    .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background-color: var(--card-bg);
+        padding: 0.2rem 0.8rem;
+        border-radius: 1rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 600;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, var(--text), var(--text-secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .description {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    .content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Markdown content styling */
+    .content :global(h2) {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin: 2.5rem 0 1rem;
+        color: var(--text);
+    }
+
+    .content :global(h3) {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 2rem 0 0.8rem;
+        color: var(--text);
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        margin: 1rem 0 2rem 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    .content :global(img) {
+        width: 100%;
+        border-radius: 0.5rem;
+        margin: 2rem 0;
+    }
+
+    .content :global(.carousel) {
+        margin: 2rem -1rem;
+        overflow-x: auto;
+        padding: 1rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .content :global(.carousel::-webkit-scrollbar) {
+        display: none;
+    }
+
+    .content :global(.carousel-content) {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .content :global(.carousel img) {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        margin: 0;
+        flex-shrink: 0;
+        border-radius: 0.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .content :global(.carousel img:hover) {
+        transform: scale(1.02);
+    }
+
+    @media (max-width: 768px) {
+        .project {
+            margin: 2rem auto;
+        }
+
+        .project-header {
+            margin-bottom: 2rem;
+        }
+
+        .content :global(.carousel) {
+            margin: 1.5rem -1rem;
+        }
+
+        .content :global(.carousel img) {
+            width: 250px;
+            height: 170px;
+        }
+    }
+</style>

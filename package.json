@@ -9,7 +9,19 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.3",
+    "@astrojs/tailwind": "^5.0.2",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tailwindcss/vite": "^4.1.13",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.13.7"
+    "astro": "^3.6.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.544.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
