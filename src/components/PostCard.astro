@@ -2,20 +2,35 @@
 interface Props {
     title: string;
     description: string;
-    date: string;
+    pubDate: Date | string;
     url: string;
+    tags?: string[];
 }
 
-const { title, description, date, url } = Astro.props;
+const { title, description, pubDate, url, tags } = Astro.props;
+
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+});
 ---
 
 <a href={url} class="post-card animate-fade-in">
     <div class="post-content">
-        <span class="post-date">{date}</span>
+        <div class="post-meta">
+            <span class="post-date">{formattedDate}</span>
+            {tags && tags.length > 0 && (
+                <div class="tags">
+                    {tags.slice(0, 2).map(tag => (
+                        <span class="tag">#{tag}</span>
+                    ))}
+                </div>
+            )}
+        </div>
         <h3>{title}</h3>
         <p>{description}</p>
     </div>
-    <div class="post-meta">
+    <div class="arrow-container">
         <span class="arrow">→</span>
     </div>
 </a>
@@ -24,7 +39,7 @@ const { title, description, date, url } = Astro.props;
     .post-card {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         padding: 2rem;
         background-color: var(--background);
         transition: background-color 0.2s ease;
@@ -34,19 +49,50 @@ const { title, description, date, url } = Astro.props;
         background-color: var(--card-bg);
     }
 
+    .post-content {
+        flex: 1;
+        margin-right: 2rem;
+    }
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
     .post-content h3 {
         font-size: 1.25rem;
         margin: 0.5rem 0;
+        color: var(--text);
     }
 
     .post-content p {
         color: var(--text-secondary);
+        margin: 0;
+        line-height: 1.5;
     }
 
     .post-date {
         font-size: 0.875rem;
         color: var(--text-secondary);
         opacity: 0.8;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        opacity: 0.8;
+    }
+
+    .arrow-container {
+        flex-shrink: 0;
+        padding-top: 0.25rem;
     }
 
     .arrow {
@@ -64,6 +110,16 @@ const { title, description, date, url } = Astro.props;
     @media (max-width: 768px) {
         .post-card {
             padding: 1.5rem;
+        }
+        
+        .post-content {
+            margin-right: 1rem;
+        }
+
+        .post-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
     }
 </style>

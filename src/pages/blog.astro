@@ -7,6 +7,12 @@ import PostCard from '../components/PostCard.astro';
 import Footer from '../components/Footer.astro';
 
 const pageTitle = 'Blog';
+
+// Get all posts and sort them by date
+const posts = await Astro.glob('./posts/*.md');
+const sortedPosts = posts.sort((a, b) => 
+    new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+);
 ---
 
 <Layout title={pageTitle}>
@@ -24,12 +30,15 @@ const pageTitle = 'Blog';
         />
 
         <div class="posts-grid">
-            <PostCard 
-                title="First Blog Post"
-                description="Starting my journey with Astro and web development"
-                date="September 2025"
-                url="/posts/1/"
-            />
+            {sortedPosts.map(post => (
+                <PostCard 
+                    title={post.frontmatter.title}
+                    description={post.frontmatter.description}
+                    pubDate={post.frontmatter.pubDate}
+                    url={post.url || `#`}
+                    tags={post.frontmatter.tags}
+                />
+            ))}
         </div>
     </section>
 
