@@ -57,8 +57,9 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
     .post-meta {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 0.5rem;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        width: 100%;
     }
 
     .post-content h3 {
@@ -86,8 +87,11 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
 
     .tag {
         font-size: 0.75rem;
-        color: var(--text-secondary);
-        opacity: 0.8;
+        color: var(--accent);
+        background: rgba(0, 122, 255, 0.1);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(0, 122, 255, 0.2);
     }
 
     .arrow-container {
@@ -119,7 +123,11 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
         .post-meta {
             flex-direction: column;
             align-items: flex-start;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        .tags {
+            align-self: flex-start;
         }
     }
 </style>

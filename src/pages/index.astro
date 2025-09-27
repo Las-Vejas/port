@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import profileImage from '../assets/me.jpeg';
+// import profileImage from '../assets/me.jpeg'; --- IGNORE ---
 ---
 
 <Layout title="Vejas">
@@ -18,7 +18,7 @@ import profileImage from '../assets/me.jpeg';
 				</p>
 			</div>
 			<div class="photo-frame animate-fade-in delay-3">
-				<img src={profileImage.src} alt="Vejas" />
+				<img src="" alt="Vejas" />
 			</div>
 		</div>
 	</header>
@@ -57,13 +57,13 @@ import profileImage from '../assets/me.jpeg';
 
 <style>
 	.hero {
-		margin: 8rem 0;
+		margin: 4rem 0;
 	}
 
 	.hero-content {
 		display: flex;
 		align-items: center;
-		gap: 4rem;
+		gap: 1rem;
 	}
 
 	.intro {
@@ -77,6 +77,7 @@ import profileImage from '../assets/me.jpeg';
 		border-radius: 50%;
 		border: 3px solid var(--border);
 		background-color: var(--surface);
+		margin-left: ;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -94,7 +95,7 @@ import profileImage from '../assets/me.jpeg';
 	}
 
 	.photo-frame:has(img)::before {
-		display: none;
+		display: ;
 	}
 
 	.photo-frame img {
@@ -109,6 +110,7 @@ import profileImage from '../assets/me.jpeg';
 		font-weight: 600;
 		line-height: 1.1;
 		margin-bottom: 2rem;
+		margin-right: ;
 		background: linear-gradient(to right, var(--text), var(--text-secondary));
 		-webkit-background-clip: text;
 		color: transparent;

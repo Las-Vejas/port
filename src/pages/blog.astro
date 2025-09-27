@@ -9,10 +9,20 @@ import Footer from '../components/Footer.astro';
 const pageTitle = 'Blog';
 
 // Get all posts and sort them by date
-const posts = await Astro.glob('./posts/*.md');
-const sortedPosts = posts.sort((a, b) => 
-    new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+const postFiles = import.meta.glob('./posts/*.md');
+const posts = await Promise.all(
+    Object.entries(postFiles).map(async ([path, resolver]) => {
+        const post = await resolver() as any;
+        const url = path.replace('./posts/', '/posts/').replace('.md', '');
+        return { ...post, url };
+    })
 );
+
+const sortedPosts = posts
+    .filter((post: any) => post.frontmatter.title) // Filter out posts without titles
+    .sort((a: any, b: any) => 
+        new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+    );
 ---
 
 <Layout title={pageTitle}>
@@ -30,7 +40,7 @@ const sortedPosts = posts.sort((a, b) =>
         />
 
         <div class="posts-grid">
-            {sortedPosts.map(post => (
+            {sortedPosts.map((post: any) => (
                 <PostCard 
                     title={post.frontmatter.title}
                     description={post.frontmatter.description}
@@ -46,6 +56,13 @@ const sortedPosts = posts.sort((a, b) =>
 </Layout>
 
 <style>
+    .posts {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        margin-bottom: 4rem;
+    }
+
     .posts-grid {
         display: flex;
         flex-direction: column;
@@ -53,5 +70,11 @@ const sortedPosts = posts.sort((a, b) =>
         background-color: var(--border);
         border-radius: 1rem;
         overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+        .posts {
+            padding: 0 1rem;
+        }
     }
 </style>
