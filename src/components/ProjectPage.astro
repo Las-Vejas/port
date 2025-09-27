@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from './Navigation.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+	title: string;
+	tagline: string;
+	categories: string[];
+	overview: string;
+	features: string[];
+	links: {
+		github?: string;
+		demo?: string;
+		live?: string;
+	};
+}
+
+const { title, tagline, categories, overview, features, links } = Astro.props;
+---
+
+<Layout title={`${title} - Vejas`}>
+	<Navigation />
+
+	<article class="project-page">
+		<header class="project-header">
+			<h1>{title}</h1>
+			<p class="project-tagline">{tagline}</p>
+			
+			<div class="project-categories">
+				{categories.map(category => (
+					<span class="category">{category}</span>
+				))}
+			</div>
+		</header>
+
+		<div class="project-content">
+			<section class="project-overview">
+				<h2>Overview</h2>
+				<p>{overview}</p>
+			</section>
+
+			<section class="project-features">
+				<h2>Features</h2>
+				<ul>
+					{features.map(feature => (
+						<li>{feature}</li>
+					))}
+				</ul>
+			</section>
+
+			<section class="project-links">
+				<h2>Links</h2>
+				<div class="links">
+					{links.github && (
+						<a href={links.github} class="link-button" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-github"></i>
+							View on GitHub
+						</a>
+					)}
+					<!-- {links.demo && (
+						<a href={links.demo} class="link-button" target="_blank" rel="noopener noreferrer">
+							<i class="fas fa-external-link-alt"></i>
+							Live Demo
+						</a>
+					)} --> 
+					{links.live && (
+						<a href={links.live} class="link-button" target="_blank" rel="noopener noreferrer">
+							<i class="fas fa-external-link-alt"></i>
+							View Live
+						</a>
+					)}
+				</div>
+			</section>
+		</div>
+	</article>
+
+	<Footer />
+</Layout>
+
+<style>
+	.project-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem;
+		margin-top: 6rem;
+	}
+
+	.project-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.project-header h1 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 600;
+		margin-bottom: 1rem;
+		background: linear-gradient(to right, var(--text), var(--text-secondary));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.project-tagline {
+		font-size: 1.25rem;
+		color: var(--text-secondary);
+		max-width: 600px;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+	}
+
+	.project-categories {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.category {
+		background: rgba(255, 255, 255, 0.1);
+		color: var(--text-secondary);
+		padding: 0.5rem 1rem;
+		border-radius: 1.5rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		border: 1px solid var(--border);
+	}
+
+	.project-content {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.project-content section {
+		background: var(--card-bg);
+		padding: 2rem;
+		border-radius: 1rem;
+		border: 1px solid var(--border);
+	}
+
+	.project-content h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--text);
+	}
+
+	.project-content p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.project-features ul {
+		list-style: none;
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.project-features li {
+		color: var(--text-secondary);
+		position: relative;
+		padding-left: 1.5rem;
+	}
+
+	.project-features li::before {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: bold;
+	}
+
+	.links {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.link-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		background: var(--hover);
+		color: var(--text);
+		text-decoration: none;
+		border-radius: 0.5rem;
+		border: 1px solid var(--border);
+		transition: all 0.2s ease;
+	}
+
+	.link-button:hover {
+		background: var(--accent);
+		color: white;
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 768px) {
+		.project-page {
+			padding: 1rem;
+			margin-top: 4rem;
+		}
+
+		.project-content section {
+			padding: 1.5rem;
+		}
+
+		.links {
+			flex-direction: column;
+		}
+
+		.link-button {
+			justify-content: center;
+		}
+	}
+</style>

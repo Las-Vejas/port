@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import profileImage from '../assets/me.jpeg';
 ---
 
 <Layout title="Vejas">
@@ -17,7 +18,7 @@ import Footer from '../components/Footer.astro';
 				</p>
 			</div>
 			<div class="photo-frame animate-fade-in delay-3">
-				<img src="src/assets/me.jpeg" alt="Vejas" />
+				<img src={profileImage.src} alt="Vejas" />
 			</div>
 		</div>
 	</header>
@@ -29,7 +30,7 @@ import Footer from '../components/Footer.astro';
 		</div>
 
 		<div class="projects">
-			<a href="#" class="project animate-fade-in delay-1">
+			<a href="/projects/wind16" class="project animate-fade-in delay-1">
 				<div class="project-content">
 					<h3>wind16</h3>
 					<p>A 16-key, 4x4 macropad with backlighting and QMK support</p>
@@ -39,10 +40,10 @@ import Footer from '../components/Footer.astro';
 				</div>
 			</a>
 
-			<a href="#" class="project animate-fade-in delay-2">
+			<a href="/projects/portfolio" class="project animate-fade-in delay-2">
 				<div class="project-content">
-					<h3>Project Two</h3>
-					<p>Another significant project showcasing your skills</p>
+					<h3>Portfolio Website</h3>
+					<p>A modern, responsive portfolio built with Astro and deployed on Vercel</p>
 				</div>
 				<div class="project-meta">
 					<span class="arrow">→</span>
