@@ -20,14 +20,20 @@
   }
 }
 
+/* Initial states - elements start invisible */
 .animate-fade-in {
+  opacity: 0;
+  transform: translateY(10px);
   animation: fadeIn 0.6s ease-out forwards;
 }
 
 .animate-slide-in {
+  opacity: 0;
+  transform: translateX(-20px);
   animation: slideIn 0.6s ease-out forwards;
 }
 
+/* Animation delays */
 .delay-1 {
   animation-delay: 0.1s;
 }
@@ -40,6 +46,20 @@
   animation-delay: 0.3s;
 }
 
+/* Additional delay options for better staggering */
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+.delay-6 {
+  animation-delay: 0.6s;
+}
+
+/* Hover effects */
 .hover-lift {
   transition: transform 0.2s ease;
 }

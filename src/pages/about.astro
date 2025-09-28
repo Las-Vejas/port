@@ -12,10 +12,11 @@ const identity = {
   firstName: "Vejas",
   country: "Luxembourg",
   occupation: "Student",
-  hobbies: ["making custom keyboards", "piano", "swimming"],
+  hobbies: ["Making custom keyboards", "Piano", "Swimming", "Gaming"],
+  skills: ["HTML", "CSS", "School"]
 };
 
-const skills = ["HTML", "CSS", "School"];
+const skills = [];
 ---
 
 <Layout title={pageTitle}>
@@ -23,25 +24,27 @@ const skills = ["HTML", "CSS", "School"];
     
     <Hero 
         title="About Me"
-        description={`Student and keyboard enthusiast based in ${identity.country}, passionate about technology and creating elegant solutions.`}
+        description={`Student and keyboard enthusiast based in ${identity.country}, passionate about technology and music.`}
     />
 
     <section class="content">
-        <SectionHeader 
-            title="Skills & Interests"
-            subtitle="What I bring to the table"
-        />
+        <div class="animate-fade-in delay-2">
+            <SectionHeader 
+                title="Skills & Interests"
+                subtitle="What I bring to the table"
+            />
+        </div>
 
         <div class="info-grid">
             <InfoCard
                 title="Skills"
-                items={skills}
-                delay={1}
+                items={identity.skills}
+                delay={3}
             />
             <InfoCard
                 title="Hobbies"
                 items={identity.hobbies}
-                delay={2}
+                delay={4}
             />
         </div>
     </section>

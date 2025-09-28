@@ -34,12 +34,14 @@ const sortedPosts = posts
     />
 
     <section class="posts">
-        <SectionHeader 
-            title="Latest Posts" 
-            subtitle="My recent writings and musings"
-        />
+        <div class="animate-fade-in delay-2">
+            <SectionHeader 
+                title="Latest Posts" 
+                subtitle="My recent writings and musings"
+            />
+        </div>
 
-        <div class="posts-grid">
+        <div class="posts-grid animate-fade-in delay-3">
             {sortedPosts.map((post: any) => (
                 <PostCard 
                     title={post.frontmatter.title}
@@ -60,7 +62,7 @@ const sortedPosts = posts
         max-width: 800px;
         margin: 0 auto;
         padding: 0 2rem;
-        margin-bottom: 4rem;
+        margin-bottom: 1rem;
     }
 
     .posts-grid {
